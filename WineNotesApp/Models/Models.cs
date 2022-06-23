@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace WineNotesApp.Models;
 public class WineNote
 {
-    public string WineId { get; set; }
-    
-    public string Notes { get; set; }
+    public string WineId { get; set; } = string.Empty;
+
+
+    public string Notes { get; set; } = string.Empty;
 }

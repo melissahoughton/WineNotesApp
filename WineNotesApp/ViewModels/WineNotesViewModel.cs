@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using WineNotesApp.Models;
 
 namespace WineNotesApp.ViewModels;
 public class WineNotesViewModel : INotifyPropertyChanged
 {
-    private List<WineNote> _wineNotes;
+    private ObservableCollection<WineNote> _wineNotes = new();
 
-    public List<WineNote> WineNotes {
+    public ObservableCollection<WineNote> WineNotes {
         get => _wineNotes;
         set
         {
@@ -21,7 +17,7 @@ public class WineNotesViewModel : INotifyPropertyChanged
         }
     }
 
-    public Command SubmitWineNote { get; set; }
+    public Command<WineNote> SubmitWineNote { get; set; }
 
     public WineNotesViewModel()
     {
@@ -30,7 +26,7 @@ public class WineNotesViewModel : INotifyPropertyChanged
 
     private void OnSubmitWineNote(WineNote wineNote)
     {
-        WineNotes.Add(wineNote);
+        _wineNotes.Add(wineNote);
     }
 
     public event PropertyChangedEventHandler PropertyChanged;
