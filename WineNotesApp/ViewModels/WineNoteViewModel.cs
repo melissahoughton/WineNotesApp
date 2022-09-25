@@ -1,0 +1,28 @@
+﻿using System.Runtime.CompilerServices;
+
+namespace WineNotesApp.ViewModels;
+
+public class WineNoteViewModel : BaseViewModel {
+    private string _wineId;
+    private string _notes;
+
+    public string WineId {
+        get => _wineId;
+        set { SetProperty(ref _wineId, value); }
+    }
+
+    public string Notes {
+        get => _notes;
+        set { SetProperty(ref _notes, value); }
+    }
+
+    private bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
+    {
+        if (Object.Equals(storage, value))
+            return false;
+
+        storage = value;
+        OnPropertyChanged(propertyName);
+        return true;
+    }
+}
