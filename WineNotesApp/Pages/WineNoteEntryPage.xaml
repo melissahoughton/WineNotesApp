@@ -2,52 +2,53 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:WineNotesApp"
+             xmlns:viewModels="clr-namespace:WineNotesApp.ViewModels"
              x:Class="WineNotesApp.WineNoteEntryPage"
              Title="Wine Note Entry">
+
     <ScrollView>
         <VerticalStackLayout 
             Spacing="25" 
             Padding="30,0" 
             VerticalOptions="Center">
 
-            <Label 
-                Text="Jazz June Wines"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
+            <Image Source="jjw_black.svg"
+                   WidthRequest="300"
+                   HorizontalOptions="Center" />
 
             <Label 
-                Text="Wine note app"
+                Text="Wine Notes"
                 SemanticProperties.HeadingLevel="Level2"
                 FontSize="18"
                 HorizontalOptions="Center" />
 
-            <Button Text="New Wine Note"
+            <Button Text="New"
                 Grid.Row="0"
                 Command="{Binding NewCommand}"
                 HorizontalOptions="Start" />
 
-            <VerticalStackLayout BindingContext="{Binding WineNoteEdit}">
+            <VerticalStackLayout IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:WineNoteCollectionViewModel}}, Path=IsEditing}"
+                BindingContext="{Binding WineNoteEdit}">
                 <Border BackgroundColor="Transparent"
-                    Stroke="{StaticResource Key=Primary}"
-                    StrokeThickness="1"
-                    HorizontalOptions="Fill"
-                    Padding="8,4">
+                        Stroke="{StaticResource Key=Primary}"
+                        StrokeThickness="1"
+                        HorizontalOptions="Fill"
+                        Padding="8,4">
 
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="4"/>
                     </Border.StrokeShape>
 
                     <Entry x:Name="WineIdEntry"
-                       Placeholder="Enter wine id"
-                       Text="{Binding WineId}" />
+                           Placeholder="Enter wine id"
+                           Text="{Binding WineId}" />
                 </Border>
 
                 <Border BackgroundColor="Transparent"
-                    Stroke="{StaticResource Key=Primary}"
-                    StrokeThickness="1"
-                    HorizontalOptions="Fill"
-                    Padding="8,4">
+                        Stroke="{StaticResource Key=Primary}"
+                        StrokeThickness="1"
+                        HorizontalOptions="Fill"
+                        Padding="8,4">
 
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="4"/>
@@ -57,30 +58,39 @@
                 </Border>
 
                 <Border BackgroundColor="Transparent"
-                    Stroke="{StaticResource Key=Primary}"
-                    StrokeThickness="1"
-                    HorizontalOptions="Fill"
-                    Padding="16,8">
+                        Stroke="{StaticResource Key=Primary}"
+                        StrokeThickness="1"
+                        HorizontalOptions="Fill"
+                        Padding="16,8">
 
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="4"/>
                     </Border.StrokeShape>
 
                     <Editor x:Name="NotesEditor"
-                        Placeholder="Enter your notes here"
-                        HeightRequest="150"
-                        HorizontalOptions="FillAndExpand"
-                        AutoSize="TextChanges"
-                        Text="{Binding Notes}" />
+                            Placeholder="Enter your notes here"
+                            HeightRequest="150"
+                            HorizontalOptions="FillAndExpand"
+                            AutoSize="TextChanges"
+                            Text="{Binding Notes}" />
                 </Border>
-            </VerticalStackLayout>
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-            <Button
-                x:Name="SubmitBtn"
-                Text="Submit"
-                Command="{Binding SubmitCommand}"
-                HorizontalOptions="Center" >
-            </Button>
+                    <Button Text="Submit"
+                            Grid.Column="0"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:WineNoteCollectionViewModel}}, Path=SubmitCommand}"
+                            VerticalOptions="Center" />
+                    <Button Text="Cancel"
+                            Grid.Column="2"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:WineNoteCollectionViewModel}}, Path=CancelCommand}"
+                            VerticalOptions="Center" />
+                </Grid>
+            </VerticalStackLayout>
 
             <ListView ItemsSource="{Binding WineNotes}">
                 <ListView.ItemTemplate>

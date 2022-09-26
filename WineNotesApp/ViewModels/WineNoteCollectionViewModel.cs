@@ -8,7 +8,7 @@ namespace WineNotesApp.ViewModels;
 public class WineNoteCollectionViewModel : BaseViewModel
 {
     private WineNoteViewModel wineNoteEdit;
-    private bool isEditing;
+    private bool isEditing = false;
 
     public WineNoteCollectionViewModel()
     {
