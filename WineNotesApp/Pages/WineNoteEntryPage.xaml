@@ -23,7 +23,6 @@
                 HorizontalOptions="Center" />
 
             <Button Text="New"
-                Grid.Row="0"
                 Command="{Binding NewCommand}"
                 HorizontalOptions="Start" />
 
@@ -54,7 +53,7 @@
                         <RoundRectangle CornerRadius="4"/>
                     </Border.StrokeShape>
 
-                    <DatePicker />
+                    <DatePicker Date="{Binding Date}" />
                 </Border>
 
                 <Border BackgroundColor="Transparent"
@@ -70,7 +69,6 @@
                     <Editor x:Name="NotesEditor"
                             Placeholder="Enter your notes here"
                             HeightRequest="150"
-                            HorizontalOptions="FillAndExpand"
                             AutoSize="TextChanges"
                             Text="{Binding Notes}" />
                 </Border>
@@ -99,27 +97,25 @@
                             <Grid Padding="10">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="180" />
+                                    <ColumnDefinition Width="60" />
+                                    <ColumnDefinition Width="auto" />
                                 </Grid.ColumnDefinitions>
-                                <Label Grid.RowSpan="2"
-                                    Text="25/09/2022"/>
+                                <Label Grid.Column="0"
+                                    Text="{Binding Date}"/>
                                 <Label Grid.Column="1"
                                     Text="{Binding WineId}"
                                     FontAttributes="Bold" />
-                                <Label Grid.Row="1"
-                                    Grid.Column="1"
+                                <Label Grid.Column="2"
                                     Text="{Binding Notes}"
-                                    VerticalOptions="End" />
+                                    HorizontalOptions="End" />
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

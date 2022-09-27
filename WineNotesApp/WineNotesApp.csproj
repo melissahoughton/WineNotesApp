@@ -49,6 +49,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="CommunityToolkit.Maui.Markup" Version="1.1.1" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Compile Update="Pages\WineNoteEntryPage.xaml.cs">
 	    <DependentUpon>WineNoteEntryPage.xaml</DependentUpon>
 	  </Compile>
