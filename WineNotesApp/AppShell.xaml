@@ -8,13 +8,13 @@
     Shell.FlyoutBehavior="Flyout">
 
     <ShellContent
-        Title="Add Wine Note"
+        Title="Wine Note Page - XAML"
         ContentTemplate="{DataTemplate local:WineNoteEntryPage}"
         Route="WineNoteEntryPage" />
 
     <ShellContent
-        Title="Wine Notes"
-        ContentTemplate="{DataTemplate pages:WineNoteListPage}"
-        Route="WineNoteListPage" />
+        Title="Wine Note Page - CS"
+        ContentTemplate="{DataTemplate pages:WineNoteEntryPageMarkup}"
+        Route="WineNoteEntryPageMarkup" />
 
 </Shell>
